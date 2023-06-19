@@ -1,0 +1,91 @@
+{
+  "Name": "ent1",
+  "Description": "Returns the information of a ent1 record in JSON object format",
+  "HttpMethod": "GET",
+  "IsEnabled": true,
+  "OrderIndex": 2,
+  "CrossDomainPolicy": "PortalAliasesOnly",
+  "Input": [
+    {
+      "Name": "RecordId",
+      "IsDeleted": false,
+      "IsEnabled": true,
+      "OrderIndex": 0,
+      "Parameters": {},
+      "InputTypeStr": "text",
+      "Validations": [
+        {
+          "Data": "{\"Message\":\"RecordId is required.\"}",
+          "Type": "default-required",
+          "IsDeleted": false,
+          "IsEnabled": false,
+          "OrderIndex": 0,
+          "Metadata": {
+            "PAP_InternalIdentifier": "Api.InputField.RequiredValidator"
+          }
+        }
+      ]
+    }
+  ],
+  "Actions": [
+    {
+      "ActionType": "PlantAnApp.ReadEntity.6c37e3c0-93fa-489c-bd49-f146f49cc836",
+      "OrderIndex": 0,
+      "Parameters": {
+        "RecordId": "[RecordId]",
+        "OutputToken": "Record"
+      },
+      "IsDisabled": false,
+      "ExecutionType": "OnExecute",
+      "Metadata": {
+        "PAP_InternalIdentifier": "Api.ReadEntity",
+        "EntityIdentifier": "6c37e3c0-93fa-489c-bd49-f146f49cc836",
+        "IsUidEnabled": "True"
+      }
+    },
+    {
+      "ActionType": "JsonObject",
+      "OrderIndex": 1,
+      "Parameters": {
+        "HttpCode": "200 OK",
+        "Fields": [
+          {
+            "name": "Id",
+            "value": "[RecordId]"
+          },
+          {
+            "name": "name",
+            "value": "[Record:name]"
+          },
+          {
+            "name": "email",
+            "value": "[Record:email]"
+          },
+          {
+            "name": "doc",
+            "value": "[Record:doc]"
+          },
+          {
+            "name": "datetime",
+            "value": "[Record:datetime]"
+          },
+          {
+            "name": "currency",
+            "value": "[Record:currency]"
+          },
+          {
+            "name": "role",
+            "value": "[Record:role]"
+          }
+        ],
+        "Headers": []
+      },
+      "IsDisabled": false,
+      "ExecutionType": "OnExecute",
+      "Metadata": {
+        "PAP_InternalIdentifier": "Api.Response"
+      }
+    }
+  ],
+  "OnErrorActions": []
+}
